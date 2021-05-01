@@ -23,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "isr5+cguzdr1=j%v3t$viln3_we+56wdd^00u#wr7yps+j-r7d"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # 오류시 에러를 띄움   FLASE 시 404
-
+# DEBUG = False  # 오류시 에러를 띄움   FLASE 시 404
+DEBUG = True
+# ALLOWED_HOSTS = "*"
 ALLOWED_HOSTS = []
-
 
 # Application definition
 

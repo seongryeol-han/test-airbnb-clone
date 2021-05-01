@@ -1,7 +1,7 @@
 from django.db import models
+from django.urls import reverse
 from django_countries.fields import CountryField
 from core import models as core_models
-from users import models as user_models
 
 
 # abstractiem 은 name만을 위한 item임
@@ -98,6 +98,9 @@ class Room(core_models.TimeStampedModel):
     def save(self, *args, **kwargs):  # OCP # admin 에서의 save_model 과 다름 !!
         self.city = str.capitalize(self.city)
         super().save(*args, **kwargs)  # 이건 모델을 컨트롤 하는 느낌 , save_model 은 admin을 컨트롤함
+
+    def get_absolute_url(self):
+        return reverse("rooms:detail", kwargs={"pk": self.pk})
 
     def total_rating(self):
         all_reviews = self.reviews.all()
