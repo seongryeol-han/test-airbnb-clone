@@ -1,6 +1,4 @@
-from django.views.generic import ListView
-from django.http import Http404
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from . import models
 
 
@@ -20,12 +18,15 @@ class HomeView(ListView):
         return context
 
 
-def room_detail(request, pk):
-    try:
-        room = models.Room.objects.get(pk=pk)
-        return render(request, "rooms/detail.html", {"room": room})
-    except models.Room.DoesNotExist:
-        raise Http404()  # 만으로 장고는 알아서 render 함 templates(딱 이 위치 ) 에 404.html을,//
+class RoomDatail(DetailView):
+
+    """RoomDatail Definition"""
+
+    # DetailView ---> arg 로 정확히 pk 가 와야함.
+    # 잘못도니값 --> 알아서 Not Found 페이지로 보내 벌임
+    model = models.Room
+    pk_url_kwarg = "potato"
+    # pk-->potato
 
     # templates/ 안해줘도 되는건가?
 
